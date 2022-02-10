@@ -2,29 +2,24 @@ require 'rspec'
 require './lib/cell'
 
 RSpec.describe Cell do
-  it "exists" do
-    cell_1 = Cell.new('.', 'A', '1', 'A1', 1, 0.001)
+  before(:each) do
+    @cell_a1 = Cell.new({
+      slot: ".",
+      column: "a",
+      row: 1,
+      row_column_test_value: 1,
+      diagonal_test_value: 0.001})
+  end
 
-    expect(cell_1).to be_an_instance_of(Cell)
+  it "exists" do
+    expect(@cell_a1).to be_a(Cell)
   end
 
   it "has readable attributes" do
-  cell_1 = Cell.new('.', 'A', 1, 'A1', 1, 0.001)
-
-    expect(cell_1.slot_value).to eq('.')
-    expect(cell_1.diagonal_test_value).to eq(0.001)
+    expect(@cell_a1.cell_info[:slot]).to eq(".")
+    expect(@cell_a1.column).to eq("a")
+    expect(@cell_a1.row).to eq(1)
+    expect(@cell_a1.row_column_test_value).to eq(1)
   end
-
-  it "can add key/value pairs to hash" do
-  cell_1 = Cell.new('.', 'A', 1, 'A1', 1, 0.001)
-
-    expect(cell_1.cell_info).to eq({
-      slot_value: '.',
-      column: 'A',
-      row: 1,
-      index: 'A1',
-      row_column_test_value: 1,
-      diagonal_test_value: 0.001
-      })
-  end
+    # expect(@cell_a1.diagonal_test_value).to eq(0.001)
 end
