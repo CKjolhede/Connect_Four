@@ -1,26 +1,18 @@
 require 'pry'
 
 class Cell
-  attr_reader :slot_value, :column, :row, :index,  :row_column_test_value, :diagonal_test_value
+  attr_reader :slot, :column, :row, :index, :row_column_test_value, :diagonal_test_value, :cell_info
 
-  def initialize(slot_value, column, row, index, row_column_test_value, diagonal_test_value)
-    @slot_value = slot_value
-    @column = column
-    @row = row
-    @index = index
-    @row_column_test_value = row_column_test_value
-    @diagonal_test_value = diagonal_test_value
+  def initialize(cell_info)
+    @cell_info = cell_info
+    @slot = cell_info[:slot]
+    @column = cell_info[:column]
+    @row = cell_info[:row]
+    @row_column_test_value = cell_info[:row_column_test_value]
+    @diagonal_test_value = cell_info[:diagnol_test_value]
   end
 
-  def cell_info
-    cell_info = {
-      slot_value: @slot_value,
-      column: @column,
-      row: @row,
-      index: @index,
-      row_column_test_value: @row_column_test_value,
-      diagonal_test_value: @diagonal_test_value
-    }
-  end
+
+
   # binding.pry
 end
