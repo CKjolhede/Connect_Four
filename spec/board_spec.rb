@@ -7,10 +7,12 @@ RSpec.describe Board do
   before(:each) do
     @board = Board.new
     @cell_a1 = Cell.new({
-      slot_value: '.',
+
+      slot: '.',
       column: "a",
       row: 1,
-      index: "a1", row_column_test_value: 1, diagonal_test_value: 0.001})
+      row_column_test_value: 1, diagonal_test_value: 0.001})
+
   end
 
   it 'exists' do

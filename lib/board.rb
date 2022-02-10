@@ -1,5 +1,6 @@
 class Board
   Cell < Board
+
   attr_reader :slots
 
   def initialize
@@ -8,7 +9,10 @@ class Board
   end
 
   def valid_slot?(cell)
-    if cell.slot_value == "."
+
+
+    if cell.slot == "."
+
       open_slot = true
     else
       open_slot = false
@@ -24,6 +28,10 @@ class Board
     e = [e1, e2, e3, e4, e5, e6, e7]
     f = [f1, f2, f3, f4, f5, f6, f7]
     g = [g1, g2, g3, g4, g5, g6, g7]
+
+  def create_cells
+  end
+
   end
 
   # def render_board
@@ -32,13 +40,3 @@ class Board
 
 end
 
-
-
-
-
-
-
-  #methods
-  #instantiate board
-  # #slots array, column arrays
-  # valid_slot

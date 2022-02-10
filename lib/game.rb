@@ -6,7 +6,9 @@ class Game
   attr_reader :player
 
   def initalize
+
     @player = "Guest"
+
     end
 
   def start
@@ -25,7 +27,8 @@ class Game
   end
 
   def game_environment
-    cell.create_cells
+
+    board.create_cells
     board.create_board_arrays
     # board.render_board
   end
