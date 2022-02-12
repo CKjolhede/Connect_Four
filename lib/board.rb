@@ -1,42 +1,41 @@
+require 'pry'
 class Board
-  Cell < Board
 
-  attr_reader :slots
-
-  def initialize
-    @slots = []
-
+  def empty_board
+    [{col_A: 'A', col_B: 'B', col_C: 'C', col_D: 'D', col_E: 'E', col_F: 'F', col_G: 'G'}, {a6: '.', b6: '.', c6: '.', d6: '.', e6: '.', f6: '.', g6: '.'}, {a5: '.', b5: '.', c5: '.', d5: '.', e5: '.', f5: '.', g5: '.'}, {a4: '.', b4: '.', c4: '.', d4: '.', e4: '.', f4: '.', g4: '.'}, {a3: '.', b3: '.', c3: '.', d3: '.', e3: '.', f3: '.', g3: '.'}, {a2: '.', b2: '.', c2: '.', d2: '.', e2: '.', f2: '.', g2: '.'}, {a1: '.', b1: '.', c1: '.', d1: '.', e1: '.', f1: '.', g1: '.'}]
   end
 
-  def valid_slot?(cell)
-
-
-    if cell.slot == "."
-
-      open_slot = true
-    else
-      open_slot = false
+  def win?(board)
+    # trying to say: if the below .find is successful in returning an array
+    # with only 'x', the player has won. elsif
+    if board.find { |win| win.uniq == ["x"] }
+      true
+    elsif
+      false
     end
   end
 
-  def create_column_arrays
-    columns = []
-    a = [a1, a2, a3, a4, a5, a6, a7]
-    b = [b1, b2, b3, b4, b5, b6, b7]
-    c = [c1, c2, c3, c4, c5, c6, c7]
-    d = [d1, d2, d3, d4, d5, d6, d7]
-    e = [e1, e2, e3, e4, e5, e6, e7]
-    f = [f1, f2, f3, f4, f5, f6, f7]
-    g = [g1, g2, g3, g4, g5, g6, g7]
-
-  def create_cells
+  def loss?(board)
+    if winning_array.find { |loss| loss.uniq == ["o"] }
+      true
+    elsif
+      false
+    end
   end
 
-  end
+  # def empty_board
+  #   board = [%w(A B C D E F G)]
+  #   letters = %w(a b c d e f g)
+  #   rows = %w(6 5 4 3 2 1)
+  #     rows.each do |letter|
+  #       rows = []
+  #       letters.each do |row|
+  #         rows << row + letter
+  #       end
+  #       board << rows
+  #     end
+  #   board
+  # end #empty_board end
+  # binding.pry
 
-  # def render_board
-  #   row = []
-
-
-end
-
+end #JbBoard end
