@@ -1,4 +1,4 @@
 require 'pry'
-require './lib/jb_game'
+require './lib/main_menu'
 
-welcome_start = JbGame.new.welcome_prompt
+welcome_start = MainMenu.new.welcome_prompt
