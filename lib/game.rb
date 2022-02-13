@@ -1,7 +1,7 @@
 require 'pry'
-require './lib/jb_board'
+require './lib/board'
 
-class JbGame
+class Game
 
   def welcome_prompt
     puts 'Welcome to Connect 4 This game will be played with 52 cards.'
@@ -14,7 +14,7 @@ class JbGame
       puts 'Nice try, but "GO" is spelled "GO".'
       lets_go = gets.chomp.downcase
     end
-    go = JbGame.new.game_start
+    go = Game.new.game_start
   end #welcome_prompt end
 
   def winning_arrays
@@ -22,7 +22,7 @@ class JbGame
   end #winning_arrays method end
 
   def game_start
-    board = JbBoard.new.empty_board
+    board = Board.new.empty_board
     # binding.pry
     board.each do |row|
       row.each do |key, value|
