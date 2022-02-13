@@ -22,9 +22,9 @@ class Board
     row = @available_slots[column]
     if @available_slots == [0, 0, 0, 0, 0, 0, 0]
       puts "Its a Draw"
-    elsif row < 1
+    elsif row < 0
       puts "That column is full. Please choose a column with available spaces"
-      game.start_turn
+      # game.start_turn
     else
       if @player == "human"
         @game_board[row][column] = "X "
