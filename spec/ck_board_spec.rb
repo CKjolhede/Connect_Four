@@ -16,4 +16,9 @@ RSpec.describe Board do
     expect(@board.render_board).to be_a(Array)
   end
 
+  it 'can find correct column from user input' do
+    @player = "human"
+    @board.update_board("a")
+    expect(@board.game_board[0][6]).to eq("X")
+  end
 end
