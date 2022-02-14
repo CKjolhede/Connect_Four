@@ -1,36 +1,48 @@
-require './lib/cell'
-require './lib/board'
 require 'pry'
+require './lib/board'
+require './lib/winning_arrays'
+require './lib/turn'
 
 class Game
-  attr_reader :player
 
-  def initalize
+  def game_start
+    winning_arrays = WinningArrays.new.array
+    board = Board.new
+    board.print_board
 
-    @player = "Guest"
+    puts "You'll be playing as 'X'. Choose a column to drop your pieces in by typing 'A' 'B' 'C' 'D' 'E' 'F' or 'G'"
 
-    end
+    turn = Turn.new(board, winning_arrays)
 
-  def start
-    p "Do you feel you have what it takes to take me on in the ultimate battle of strategy? "
-    `say Do you feel you have what it takes to take me on in the ultimate battle of strategy?`
-    user_input
-  end
+    until turn.game_over
+      turn.full_column.each do |key, value|
+        if value > 5
+          turn.valid_input.delete(key)
+        end
+      end
+      
+      turn.player
 
-  def user_input
-    p "Enter yes or no"
-    input = gets.chomp
-    if input.downcase = "y" || "yes"
-      game.begin
+      board.print_board
+      puts 'Computer move:'
+
+      turn.computer
+
+      board.print_board
+      binding.pry
+    end #until end
+
+    board.print_board
+
+    if winning_arrays.find { |win| win.uniq == ["X"] }
+      puts "*~~~* Congratulations, You Win!! *~~~*"
+    elsif winning_arrays.find { |loss| loss.uniq == ["O"] }
+      puts "*~~~* Too bad, the computer won. *~~~*"
     else
+      puts "*~~* DRAW *~~*"
     end
-  end
 
-  def game_environment
-
-    board.create_cells
-    board.create_board_arrays
-    # board.render_board
-  end
-
-end
+    puts ''
+    welcome_start = MainMenu.new.welcome_prompt
+  end #game_start method end
+end  #JbGame class end
