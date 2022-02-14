@@ -1,6 +1,7 @@
 require './lib/game'
 
 class MainMenu
+  # called from runner
   def welcome_prompt
     puts ''
     puts "Welcome to Connect 4! You'll be playing as 'X' today"
