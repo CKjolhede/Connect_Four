@@ -71,6 +71,9 @@ RSpec.describe Board do
     @board.update_board("a")
     @board.update_board("a")
     @board.update_board("a")
-    expect(@board.update_board("a")).to puts("That column is full. Please choose a column with available spaces")
+    expect(@board.update_board("a")).to ("That column is full. Please choose a column with available spaces")
   end
+
+  it 'updates the #winning_arrays' do
+    
 end

@@ -1,4 +1,5 @@
-require 'pry'
+require './lib/ck_game'
+
 
 class Board
   attr_reader :game_board, :available_slots
@@ -17,23 +18,29 @@ class Board
   end
 
   def update_board(selected_column)
-    @player = "human"
     column = (selected_column.ord)-97
     row = @available_slots[column]
     if @available_slots == [0, 0, 0, 0, 0, 0, 0]
-      puts "Its a Draw"
-    elsif row < 0
+      game.winner = "D"
+      game.end_game
+    elsif row <= 0
       puts "That column is full. Please choose a column with available spaces"
-      # game.start_turn
+      game.play
     else
-      if @player == "human"
+      if @turn.odd?
         @game_board[row][column] = "X "
+        coord_string = row.to_s + column.to_s
+        game.winning_arrays.gsub!(coord_string, "X")
       else @game_board[row][column] = "O "
+        coord_string = row.to_s + column.to_s
+        game.winning_arrays.gsub!(coord_string, "O")
       end
     end
     @available_slots[column] -= 1
     system 'clear'
     self.render_board
+    @turn += 1
   end
+
 
 end
