@@ -20,7 +20,7 @@ class Game
           turn.valid_input.delete(key)
         end
       end
-      
+
       turn.player
 
       board.print_board
@@ -29,10 +29,9 @@ class Game
       turn.computer
 
       board.print_board
-      binding.pry
     end #until end
 
-    board.print_board
+    # board.print_board
 
     if winning_arrays.find { |win| win.uniq == ["X"] }
       puts "*~~~* Congratulations, You Win!! *~~~*"
