@@ -61,7 +61,31 @@ class Game
     end
   end
 
-
+  def end_game(condition)
+    case: condition
+    when "D"
+      p "The Game is a Draw"
+      system `say You are my equal it seems.`
+    when "C"
+      p "I won!!!"
+      system `say Uh huh Uh huh Uh huh I totally crushed you.``
+    when "P"
+      p "You won"
+      system `say You got luck that time`
+    end
+    sleep(1.5)
+      p "Would you like to play again?"
+      system `say Would you like to play again?`
+      input = gets.chomp
+      if input == 'y' || 'yes'
+        system `clear`
+        game.welcome_prompt
+      else
+        p 'Good-Bye'
+        system 'say I dont either. Goodbye'
+        exit
+      end
+  end
 
 
 end
