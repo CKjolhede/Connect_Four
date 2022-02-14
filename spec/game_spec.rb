@@ -1,14 +1,13 @@
-require './lib/cell'
-require './lib/board'
-require './lib/game'
+require './lib/ck_board'
+require './lib/ck_game'
 require 'pry'
 
 RSpec.describe Game do
-  before(:each) do
-    @game = Game.new
-  end
 
-  it "exists and sets player to default" do
+  it 'exists and sets player to default' do
+    system 'ruby ck_connect_four.rb'
     expect(@game).to be_a(Game)
   end
+
+
 end

@@ -14,10 +14,11 @@ class Game
   end
 
   def welcome_prompt
+    system 'clear'
     p 'Would you like to play a game?'
     `say Would you like to play a game?`
     lets_go = gets.chomp.downcase
-    until lets_go == 'yes' || 'y' do
+    if lets_go !== 'yes' || 'y' do
       puts 'Please answer yes...   or no'
       system 'say hmmm, I dont understand that.'
       lets_go = gets.chomp.downcase
@@ -27,7 +28,7 @@ class Game
     name = gets.chomp.capitalize
     p 'I am sorry but that name is already in use. I will just call you Penelope'
     system 'say I am sorry but that name is already in use. I will just call you Penelope'
-    sleep(2)
+    sleep(1)
     system 'clear'
     play
   end
@@ -51,24 +52,24 @@ class Game
 
   def win?
     if @winning_arrays.find { |win| win.uniq == ["X"] }
-        @winner = "P"
+      end_game("P")
     end
   end
 
   def loss?
     if @winning_arrays.find { |loss|  loss.uniq == ["O"] }
-      @winner = "C"
+      end_game("C")
     end
   end
 
   def end_game(condition)
-    case: condition
+    case condition
     when "D"
       p "The Game is a Draw"
       system `say You are my equal it seems.`
     when "C"
       p "I won!!!"
-      system `say Uh huh Uh huh Uh huh I totally crushed you.``
+      system `say Uh huh Uh huh Uh huh I totally crushed you.`
     when "P"
       p "You won"
       system `say You got luck that time`
@@ -85,7 +86,8 @@ class Game
         system 'say I dont either. Goodbye'
         exit
       end
-  end
+end
+
 
 
 end
