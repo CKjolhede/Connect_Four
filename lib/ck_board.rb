@@ -2,12 +2,14 @@ require './lib/ck_game'
 
 
 class Board
-  attr_reader :game_board, :available_slots
+  attr_reader :game_board, :available_slots, :turn, :winning_arrays
 
   def initialize
     @game_board = Array.new(6) {Array.new(7,'. ')}
     @available_slots = Array.new(7,5)
-    @player = "human"
+    @turn = 1
+    @winning_arrays =
+      [['00', '01', '02', '03'],['01', '02', '03', '04'],['02', '03', '04', '05'],['10', '11', '12', '13'],['11', '12', '13', '14'],['12', '13', '14', '15'],['20', '21', '22', '23'],['21', '22', '23', '24'],['22', '23', '24', '25'],['30', '31', '32', '33'],['31', '32', '33', '34'],['32', '33', '34', '35'],['40', '41', '42', '43'],['41', '42', '43', '44'],['42', '43', '44', '45'],['50', '51', '52', '53'],['51', '52', '53', '54'],['52', '53', '54', '55'],['60', '61', '62', '63'],['61', '62', '63', '64'],['62', '63', '64', '65'],['00', '10', '20', '30'],['10', '20', '30', '40'],['20', '30', '40', '50'],['30', '40', '50', '60'],['01', '11', '21', '31'],['11', '21', '31', '41'],['21', '31', '41', '51'],['31', '41', '51', '61'],['02', '12', '22', '32'],['12', '22', '32', '42'],['22', '32', '42', '52'],['32', '42', '52', '62'],['03', '13', '23', '33'],['13', '23', '33', '43'],['23', '33', '43', '53'],['33', '43', '53', '63'],['04', '14', '24', '34'],['14', '24', '34', '44'],['24', '34', '44', '54'],['34', '44', '54', '64'],['05', '15', '25', '35'],['15', '25', '35', '45'],['25', '35', '45', '55'],['35', '45', '55', '65'],['30', '41', '52', '63'],['20', '31', '42', '53'],['31', '42', '53', '64'],['10', '21', '32', '43'],['21', '32', '43', '54'],['32', '43', '54', '65'],['00', '11', '22', '33'],['11', '22', '33', '44'],['22', '33', '44', '55'],['01', '12', '23', '34'],['12', '23', '34', '45'],['02', '13', '24', '35'],['30', '21', '12', '03'],['40', '31', '22', '13'],['31', '22', '13', '04'],['50', '41', '32', '23'],['41', '32', '23', '14'],['32', '23', '14', '05'],['60', '51', '42', '33'],['51', '42', '33', '24'],['42', '33', '24', '15'],['61', '52', '43', '34'],['52', '43', '34', '25'],['62', '53', '44', '35']]
   end
 
   def render_board
@@ -17,30 +19,31 @@ class Board
     end
   end
 
-  def update_board(selected_column)
-    column = (selected_column.ord)-97
-    row = @available_slots[column]
-    if @available_slots == [0, 0, 0, 0, 0, 0, 0]
-      game.winner = "D"
-      game.end_game
-    elsif row <= 0
-      puts "That column is full. Please choose a column with available spaces"
-      game.play
-    else
+  def update_board(column)
+      row = @available_slots[column]
       if @turn.odd?
         @game_board[row][column] = "X "
         coord_string = row.to_s + column.to_s
-        game.winning_arrays.gsub!(coord_string, "X")
+        update_winning_arrays(coord_string)
       else @game_board[row][column] = "O "
         coord_string = row.to_s + column.to_s
-        game.winning_arrays.gsub!(coord_string, "O")
+        update_winning_arrays(coord_string)
       end
-    end
     @available_slots[column] -= 1
     system 'clear'
     self.render_board
     @turn += 1
   end
 
-
+  def update_winning_arrays(coords)
+    @winning_arrays.each do |dimension1|
+      dimension1.each do |dimension2|
+          if turn.odd?
+            dimension2.gsub!(coords, "X")
+          else
+            dimension2.gsub!(coords, "O")
+          end
+      end
+    end
+  end
 end
