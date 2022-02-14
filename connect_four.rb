@@ -1,11 +1,5 @@
-require './lib/cell'
-require './lib/board'
+require 'pry'
 require './lib/game'
+require '.lib/board'
 
-system('clear')
-game.start
-game = Game.new
-
-def game.begin
-  game.environment
-end
+welcome_start = Game.new.welcome_prompt
