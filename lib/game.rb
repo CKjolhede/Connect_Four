@@ -14,19 +14,25 @@ class Game
 
     turn = Turn.new(board, winning_arrays)
 
-    until turn.game_over
+    until turn.game_over?
+      turn.player
+
       turn.full_column.each do |key, value|
         if value > 5
           turn.valid_input.delete(key)
         end
       end
 
-      turn.player
-
       board.print_board
       puts 'Computer move:'
 
       turn.computer
+
+      turn.full_column.each do |key, value|
+        if value > 5
+          turn.valid_input.delete(key)
+        end
+      end
 
       board.print_board
     end #until end
@@ -37,7 +43,7 @@ class Game
       puts "*~~~* Congratulations, You Win!! *~~~*"
     elsif winning_arrays.find { |loss| loss.uniq == ["O"] }
       puts "*~~~* Too bad, the computer won. *~~~*"
-    else
+    elsif turn.valid_input.length == 0
       puts "*~~* DRAW *~~*"
     end
 
