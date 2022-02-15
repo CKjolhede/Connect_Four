@@ -58,5 +58,11 @@ end
     expect(board.hash[:a1]).to eq("O")
   end
 
-
+  it 'evaluates #game_over? conditions' do
+    # hardcoding WinningArrays.array[0] elements to be all "X"'s
+    board = Board.new
+    winning_arrays = WinningArrays.new.array
+    turn = Turn.new(board, winning_arrays) 
+    expect(turn.game_over?).to eq(true)
+  end
 end
