@@ -24,7 +24,7 @@ end
   describe "Turn user input hardcoded" do
     #requires replacing gets to be changed to hardcoded 'a' on line 15 of turn.rb
 
-  it 'can interact with winning_arrays and board hash' do
+  it 'player turn interact with winning_arrays and board hash' do
     board = Board.new
     winning_arrays = WinningArrays.new.array
     turn = Turn.new(board, winning_arrays)
@@ -33,7 +33,7 @@ end
     expect(board.hash[:a1]).to eq("X")
   end
 
-  it "increments full column on a turn" do
+  it "increments full column on a player turn" do
     board = Board.new
     winning_arrays = WinningArrays.new.array
     turn = Turn.new(board, winning_arrays)
@@ -41,6 +41,13 @@ end
     expect(turn.full_column["a"]).to eq(1)
   end
 
+  it "increments full column on a computer turn" do
+    board = Board.new
+    winning_arrays = WinningArrays.new.array
+    turn = Turn.new(board, winning_arrays)
+    turn.computer
+    expect(turn.full_column["a"]).to eq(1)
+  end
 
 
 
