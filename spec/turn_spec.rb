@@ -33,6 +33,14 @@ end
     expect(board.hash[:a1]).to eq("X")
   end
 
+  it "increments full column on a turn" do
+    board = Board.new
+    winning_arrays = WinningArrays.new.array
+    turn = Turn.new(board, winning_arrays)
+    turn.player
+    expect(turn.full_column["a"]).to eq(1)
+  end
+
 
 
 
