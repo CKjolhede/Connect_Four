@@ -65,7 +65,11 @@ class Turn
   end #computer method end
 
   def game_over?
-    @winning_arrays.find { |win| win.uniq == ["X"] } || @winning_arrays.find { |loss| loss.uniq == ["O"] } || @valid_input.length == 0
+    if @winning_arrays.find { |win| win.uniq == ["X"] } || @winning_arrays.find { |loss| loss.uniq == ["O"] } || @valid_input.length == 0
+      true
+    else
+      false
+    end
   end
 
 end #turn class end

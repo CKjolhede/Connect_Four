@@ -3,6 +3,7 @@ require './lib/turn'
 require './lib/game'
 require './lib/winning_arrays'
 require 'rspec'
+# Skipped tests below require hardcoding changes. Changes specified below
 
 RSpec.describe Turn do
 
@@ -24,7 +25,7 @@ end
   describe "Turn user input hardcoded" do
     #requires replacing gets to be changed to hardcoded 'a' on line 15 of turn.rb
 
-  it 'player turn interact with winning_arrays and board hash' do
+  xit 'player turn interact with winning_arrays and board hash' do
     board = Board.new
     winning_arrays = WinningArrays.new.array
     turn = Turn.new(board, winning_arrays)
@@ -33,7 +34,7 @@ end
     expect(board.hash[:a1]).to eq("X")
   end
 
-  it "increments full column on a player turn" do
+  xit "increments full column on a player turn" do
     board = Board.new
     winning_arrays = WinningArrays.new.array
     turn = Turn.new(board, winning_arrays)
@@ -41,7 +42,7 @@ end
     expect(turn.full_column["a"]).to eq(1)
   end
 
-  it "increments full column on a computer turn" do
+  xit "increments full column on a computer turn" do
     board = Board.new
     winning_arrays = WinningArrays.new.array
     turn = Turn.new(board, winning_arrays)
@@ -49,7 +50,7 @@ end
     expect(turn.full_column["a"]).to eq(1)
   end
 
-  it 'computer turn interact with winning_arrays and board hash' do
+  xit 'computer turn interact with winning_arrays and board hash' do
     board = Board.new
     winning_arrays = WinningArrays.new.array
     turn = Turn.new(board, winning_arrays)
@@ -58,11 +59,11 @@ end
     expect(board.hash[:a1]).to eq("O")
   end
 
-  it 'evaluates #game_over? conditions' do
+  xit 'evaluates #game_over? conditions' do
     # hardcoding WinningArrays.array[0] elements to be all "X"'s
     board = Board.new
     winning_arrays = WinningArrays.new.array
-    turn = Turn.new(board, winning_arrays) 
+    turn = Turn.new(board, winning_arrays)
     expect(turn.game_over?).to eq(true)
   end
 end
