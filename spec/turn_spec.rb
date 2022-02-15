@@ -49,6 +49,14 @@ end
     expect(turn.full_column["a"]).to eq(1)
   end
 
+  it 'computer turn interact with winning_arrays and board hash' do
+    board = Board.new
+    winning_arrays = WinningArrays.new.array
+    turn = Turn.new(board, winning_arrays)
+    turn.computer
+    expect(winning_arrays[0][0]).to eq("O")
+    expect(board.hash[:a1]).to eq("O")
+  end
 
 
 end
