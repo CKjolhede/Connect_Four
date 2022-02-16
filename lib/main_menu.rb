@@ -6,9 +6,11 @@ class MainMenu
     system 'clear'
     puts ''
     puts "Welcome to Connect 4! You'll be playing as 'X' today"
-    puts "Type 'p' to start the game, or 'q' to quit"
+    puts "Clearly say 'p' to start the game, or 'q' to quit"
     puts '------------------------------------------------------------------'
-    system 'say Hello Professor. Would you like to play a game?'
+    system 'say Hello Professor. Would you like to play a game? Please speak your answer into the microphone slowly and clearly so I can understand you'
+    sleep(2)
+    system 'say I am sorry, I could not understand you. Instead, please type in your answer'
     input = gets.chomp.downcase
 
     until input == 'p' || input == 'q' do
@@ -20,7 +22,7 @@ class MainMenu
     end
 
     if input == 'p'
-      system 'say That is Excellent! Please enter your game name'
+      system 'say That is Excellent! Please enter the name you would like me to call you'
       puts "Game Name:"
       puts "Game Name: #{name=gets.chomp}"
       puts "Sorry, That name is already taken. I will just call you Peaches"
