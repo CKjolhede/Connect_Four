@@ -12,12 +12,16 @@ class Turn
   end
 
   def player
+      puts "Your turn:"
+      system 'say It is Your turn'
       player_piece = gets.chomp.downcase
       until @valid_input.include?(player_piece)
         puts "please choose a column between 'A' and 'G' with open slots available"
+        system 'say That was an invalid selection. You have two more tries before you forfeit your turn.'
+        sleep(1.5)
+        system `say I am just kidding. You will not lose a turn. Just do it right this time. I am a busy computer.`
         player_piece = gets.chomp.downcase
       end
-
       player_column = []
       # full_column = []
       @board.hash.each do |key, value|
@@ -30,6 +34,7 @@ class Turn
 
       @full_column[player_piece] += 1
       @board.hash[player_column.last] = 'X'
+
 
       if player_column.length > 0
         @winning_arrays.each do |nested_win|
